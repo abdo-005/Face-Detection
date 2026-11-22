@@ -1,0 +1,42 @@
+{
+  "images": 3226,
+  "images_sans_visage": 0,
+  "evenements": 61,
+  "visages_annotes": 39708,
+  "visages_invalides": 585,
+  "visages_valides": 39123,
+  "visages_par_image_moyenne": 12.31,
+  "visages_par_image_mediane": 3.0,
+  "visages_par_image_max": 709,
+  "hauteur_px_p10_p50_p90": [
+    8.0,
+    20.0,
+    78.0
+  ],
+  "part_visages_moins_16px": 0.495,
+  "part_visages_moins_32px": 0.755,
+  "attributs": {
+    "blur": {
+      "net": 5369,
+      "flou moyen": 10381,
+      "flou fort": 23373
+    },
+    "occlusion": {
+      "aucune": 23434,
+      "partielle": 7099,
+      "forte": 8590
+    },
+    "pose": {
+      "typique": 37486,
+      "atypique": 1637
+    },
+    "illumination": {
+      "normale": 36843,
+      "extreme": 2280
+    },
+    "expression": {
+      "typique": 38723,
+      "exageree": 400
+    }
+  }
+}

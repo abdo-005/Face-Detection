@@ -1,0 +1,33 @@
+# Environnements Python
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+
+# Dataset WIDER FACE (3,6 Go) : à télécharger séparément (voir README)
+Wider Face/
+WIDER_*/
+wider_face_split/
+
+# Points de reprise volumineux : seul le meilleur modèle (meilleur.pt, ~9 Mo) est versionné
+sorties/modeles/reprise.pt
+sorties/modeles/dernier.pt
+
+# Résultats régénérables à la demande
+sorties/demo/
+sorties/detection_mobilenet/
+sorties/detection_dnn/
+sorties/exploration/exemples/
+results/
+Photos/
+
+# Fichiers système / éditeurs
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+~$*.pptx
+
+# Présentation (gardée en local, hors du dépôt)
+*.pptx

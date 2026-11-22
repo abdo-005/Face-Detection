@@ -1,0 +1,3 @@
+modele,AP,precision,rappel,f1,meilleur_f1,seuil_meilleur_f1,vrais_positifs,faux_positifs,faux_negatifs,ms_par_image
+ResNet-10 (OpenCV),0.3571,0.9724,0.2085,0.3434,0.4494,0.14,3351,95,12721,31.03
+MobileNet fine-tune (CUDA),0.7797,0.9648,0.5299,0.6841,0.7944,0.249,8517,311,7555,42.94

@@ -1,0 +1,21 @@
+modele,attribut,valeur,visages,rappel
+ResNet-10 (OpenCV),blur,net,4839,0.5346
+ResNet-10 (OpenCV),blur,flou moyen,7347,0.1009
+ResNet-10 (OpenCV),blur,flou fort,3886,0.0059
+ResNet-10 (OpenCV),occlusion,aucune,12226,0.2599
+ResNet-10 (OpenCV),occlusion,partielle,1583,0.072
+ResNet-10 (OpenCV),occlusion,forte,2263,0.0265
+ResNet-10 (OpenCV),pose,typique,15075,0.2172
+ResNet-10 (OpenCV),pose,atypique,997,0.0762
+ResNet-10 (OpenCV),illumination,normale,14993,0.2105
+ResNet-10 (OpenCV),illumination,extreme,1079,0.1807
+MobileNet fine-tune (CUDA),blur,net,4839,0.7247
+MobileNet fine-tune (CUDA),blur,flou moyen,7347,0.5367
+MobileNet fine-tune (CUDA),blur,flou fort,3886,0.2746
+MobileNet fine-tune (CUDA),occlusion,aucune,12226,0.6177
+MobileNet fine-tune (CUDA),occlusion,partielle,1583,0.3601
+MobileNet fine-tune (CUDA),occlusion,forte,2263,0.1745
+MobileNet fine-tune (CUDA),pose,typique,15075,0.5467
+MobileNet fine-tune (CUDA),pose,atypique,997,0.2758
+MobileNet fine-tune (CUDA),illumination,normale,14993,0.533
+MobileNet fine-tune (CUDA),illumination,extreme,1079,0.4875

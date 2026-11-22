@@ -1,0 +1,287 @@
+{
+  "parametres": {
+    "seuil": 0.5,
+    "iou": 0.5,
+    "taille_min_px": 20,
+    "images": 3226
+  },
+  "modeles": {
+    "ResNet-10 (OpenCV)": {
+      "AP": 0.3571,
+      "seuil": 0.5,
+      "precision": 0.9724,
+      "rappel": 0.2085,
+      "f1": 0.3434,
+      "vrais_positifs": 3351,
+      "faux_positifs": 95,
+      "faux_negatifs": 12721,
+      "visages_evalues": 16072,
+      "meilleur_f1": 0.4494,
+      "seuil_meilleur_f1": 0.14,
+      "rappel_par_taille": {
+        "petits (20-40 px)": {
+          "visages": 6386,
+          "rappel": 0.00031318509238960227
+        },
+        "moyens (40-100 px)": {
+          "visages": 6952,
+          "rappel": 0.18224971231300346
+        },
+        "grands (>100 px)": {
+          "visages": 2734,
+          "rappel": 0.761521580102414
+        }
+      },
+      "par_seuil": {
+        "0.1": {
+          "precision": 0.0457,
+          "rappel": 0.5116,
+          "f1": 0.0839,
+          "faux_positifs": 171656,
+          "visages_non_trouves": 7850
+        },
+        "0.2": {
+          "precision": 0.8615,
+          "rappel": 0.2778,
+          "f1": 0.4201,
+          "faux_positifs": 718,
+          "visages_non_trouves": 11607
+        },
+        "0.25": {
+          "precision": 0.9037,
+          "rappel": 0.2568,
+          "f1": 0.3999,
+          "faux_positifs": 440,
+          "visages_non_trouves": 11945
+        },
+        "0.3": {
+          "precision": 0.9284,
+          "rappel": 0.2435,
+          "f1": 0.3858,
+          "faux_positifs": 302,
+          "visages_non_trouves": 12158
+        },
+        "0.4": {
+          "precision": 0.9555,
+          "rappel": 0.2232,
+          "f1": 0.3619,
+          "faux_positifs": 167,
+          "visages_non_trouves": 12484
+        },
+        "0.5": {
+          "precision": 0.9724,
+          "rappel": 0.2085,
+          "f1": 0.3434,
+          "faux_positifs": 95,
+          "visages_non_trouves": 12721
+        },
+        "0.6": {
+          "precision": 0.9826,
+          "rappel": 0.1931,
+          "f1": 0.3227,
+          "faux_positifs": 55,
+          "visages_non_trouves": 12969
+        },
+        "0.7": {
+          "precision": 0.9878,
+          "rappel": 0.1766,
+          "f1": 0.2996,
+          "faux_positifs": 35,
+          "visages_non_trouves": 13234
+        }
+      },
+      "rappel_par_attribut": {
+        "blur": {
+          "net": {
+            "visages": 4839,
+            "rappel": 0.5346145897912792
+          },
+          "flou moyen": {
+            "visages": 7347,
+            "rappel": 0.10085749285422621
+          },
+          "flou fort": {
+            "visages": 3886,
+            "rappel": 0.005918682449819866
+          }
+        },
+        "occlusion": {
+          "aucune": {
+            "visages": 12226,
+            "rappel": 0.2598560444953378
+          },
+          "partielle": {
+            "visages": 1583,
+            "rappel": 0.07201516108654453
+          },
+          "forte": {
+            "visages": 2263,
+            "rappel": 0.026513477684489615
+          }
+        },
+        "pose": {
+          "typique": {
+            "visages": 15075,
+            "rappel": 0.21724709784411278
+          },
+          "atypique": {
+            "visages": 997,
+            "rappel": 0.07622868605817452
+          }
+        },
+        "illumination": {
+          "normale": {
+            "visages": 14993,
+            "rappel": 0.21049823250850397
+          },
+          "extreme": {
+            "visages": 1079,
+            "rappel": 0.18072289156626506
+          }
+        }
+      },
+      "ms_par_image": 31.03
+    },
+    "MobileNet fine-tune (CUDA)": {
+      "AP": 0.7797,
+      "seuil": 0.5,
+      "precision": 0.9648,
+      "rappel": 0.5299,
+      "f1": 0.6841,
+      "vrais_positifs": 8517,
+      "faux_positifs": 311,
+      "faux_negatifs": 7555,
+      "visages_evalues": 16072,
+      "meilleur_f1": 0.7944,
+      "seuil_meilleur_f1": 0.249,
+      "rappel_par_taille": {
+        "petits (20-40 px)": {
+          "visages": 6386,
+          "rappel": 0.4108988412151582
+        },
+        "moyens (40-100 px)": {
+          "visages": 6952,
+          "rappel": 0.5540851553509781
+        },
+        "grands (>100 px)": {
+          "visages": 2734,
+          "rappel": 0.7465252377468911
+        }
+      },
+      "par_seuil": {
+        "0.1": {
+          "precision": 0.1002,
+          "rappel": 0.8799,
+          "f1": 0.18,
+          "faux_positifs": 126946,
+          "visages_non_trouves": 1930
+        },
+        "0.2": {
+          "precision": 0.5065,
+          "rappel": 0.7917,
+          "f1": 0.6177,
+          "faux_positifs": 12399,
+          "visages_non_trouves": 3348
+        },
+        "0.25": {
+          "precision": 0.8669,
+          "rappel": 0.733,
+          "f1": 0.7943,
+          "faux_positifs": 1809,
+          "visages_non_trouves": 4292
+        },
+        "0.3": {
+          "precision": 0.9149,
+          "rappel": 0.6832,
+          "f1": 0.7823,
+          "faux_positifs": 1021,
+          "visages_non_trouves": 5091
+        },
+        "0.4": {
+          "precision": 0.9465,
+          "rappel": 0.603,
+          "f1": 0.7367,
+          "faux_positifs": 548,
+          "visages_non_trouves": 6381
+        },
+        "0.5": {
+          "precision": 0.9648,
+          "rappel": 0.5299,
+          "f1": 0.6841,
+          "faux_positifs": 311,
+          "visages_non_trouves": 7555
+        },
+        "0.6": {
+          "precision": 0.9733,
+          "rappel": 0.4582,
+          "f1": 0.6231,
+          "faux_positifs": 202,
+          "visages_non_trouves": 8708
+        },
+        "0.7": {
+          "precision": 0.9813,
+          "rappel": 0.3888,
+          "f1": 0.557,
+          "faux_positifs": 119,
+          "visages_non_trouves": 9823
+        }
+      },
+      "rappel_par_attribut": {
+        "blur": {
+          "net": {
+            "visages": 4839,
+            "rappel": 0.7247365158090514
+          },
+          "flou moyen": {
+            "visages": 7347,
+            "rappel": 0.5366816387641214
+          },
+          "flou fort": {
+            "visages": 3886,
+            "rappel": 0.2745753988677303
+          }
+        },
+        "occlusion": {
+          "aucune": {
+            "visages": 12226,
+            "rappel": 0.6176999836414199
+          },
+          "partielle": {
+            "visages": 1583,
+            "rappel": 0.36007580543272266
+          },
+          "forte": {
+            "visages": 2263,
+            "rappel": 0.17454706142288998
+          }
+        },
+        "pose": {
+          "typique": {
+            "visages": 15075,
+            "rappel": 0.5467330016583748
+          },
+          "atypique": {
+            "visages": 997,
+            "rappel": 0.275827482447342
+          }
+        },
+        "illumination": {
+          "normale": {
+            "visages": 14993,
+            "rappel": 0.5329820582938705
+          },
+          "extreme": {
+            "visages": 1079,
+            "rappel": 0.48748841519925856
+          }
+        }
+      },
+      "ms_par_image": 42.94
+    }
+  },
+  "ms_par_image": {
+    "ResNet-10 (OpenCV)": 31.03,
+    "MobileNet fine-tune (CUDA)": 42.94,
+    "MobileNet fine-tune (CPU)": 72.22
+  }
+}

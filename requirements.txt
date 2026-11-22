@@ -1,0 +1,12 @@
+# Détecteur DNN d'OpenCV (detection_dnn.py) : seulement ces deux paquets
+opencv-python>=4.8
+numpy>=1.24
+
+# Graphiques (exploration, évaluation, matrice de confusion)
+matplotlib>=3.7
+
+# MobileNet (entraînement, evaluate.py, detection_mobilenet.py)
+# Pour le GPU NVIDIA sous Windows, installer plutôt :
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu126
+torch>=2.2
+torchvision>=0.17
