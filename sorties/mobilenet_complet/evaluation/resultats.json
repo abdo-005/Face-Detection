@@ -1,0 +1,88 @@
+{
+  "modele": "MobileNet (CUDA)",
+  "images": 3226,
+  "seuil": 0.5,
+  "iou": 0.5,
+  "AP": 0.7797,
+  "precision": 0.9648,
+  "rappel": 0.5299,
+  "f1": 0.6841,
+  "VP": 8517,
+  "FP": 311,
+  "FN": 7555,
+  "visages_evalues": 16072,
+  "meilleur_seuil_f1": {
+    "seuil": 0.25,
+    "VP": 11780,
+    "FP": 1809,
+    "FN": 4292,
+    "precision": 0.8669,
+    "rappel": 0.733,
+    "f1": 0.7943
+  },
+  "ms_par_image": 28.21,
+  "rappel_par_taille": {
+    "petits": {
+      "visages": 6386,
+      "rappel": 0.4108988412151582
+    },
+    "moyens": {
+      "visages": 6952,
+      "rappel": 0.5540851553509781
+    },
+    "grands": {
+      "visages": 2734,
+      "rappel": 0.7465252377468911
+    }
+  },
+  "rappel_par_attribut": {
+    "blur": {
+      "net": {
+        "visages": 4839,
+        "rappel": 0.7247365158090514
+      },
+      "flou moyen": {
+        "visages": 7347,
+        "rappel": 0.5366816387641214
+      },
+      "flou fort": {
+        "visages": 3886,
+        "rappel": 0.2745753988677303
+      }
+    },
+    "occlusion": {
+      "aucune": {
+        "visages": 12226,
+        "rappel": 0.6176999836414199
+      },
+      "partielle": {
+        "visages": 1583,
+        "rappel": 0.36007580543272266
+      },
+      "forte": {
+        "visages": 2263,
+        "rappel": 0.17454706142288998
+      }
+    },
+    "pose": {
+      "typique": {
+        "visages": 15075,
+        "rappel": 0.5467330016583748
+      },
+      "atypique": {
+        "visages": 997,
+        "rappel": 0.275827482447342
+      }
+    },
+    "illumination": {
+      "normale": {
+        "visages": 14993,
+        "rappel": 0.5329820582938705
+      },
+      "extreme": {
+        "visages": 1079,
+        "rappel": 0.48748841519925856
+      }
+    }
+  }
+}

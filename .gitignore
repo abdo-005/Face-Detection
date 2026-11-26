@@ -31,3 +31,8 @@ Thumbs.db
 
 # Présentation (gardée en local, hors du dépôt)
 *.pptx
+
+# Script tout-en-un : tests et démos régénérables
+sorties/mobilenet_complet/test_rapide/
+sorties/mobilenet_complet/detection/
+sorties/mobilenet_complet/dernier.pt

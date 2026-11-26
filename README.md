@@ -36,6 +36,32 @@ Vérifiez ensuite avec `python config.py`.
 - **WIDER_val** : images **jamais vues** pendant l'entraînement, utilisées pour **mesurer** les performances.
 - **WIDER_test** : sans annotations publiques, utilisé seulement pour la **démonstration**.
 
+## MobileNet tout-en-un : `mobilenet_complet.py`
+
+Tout le programme MobileNet dans **un seul fichier**, indépendant des autres scripts : données, modèle,
+entraînement, métriques, visualisation et détection.
+
+```
+python mobilenet_complet.py entrainer --test-rapide        # vérification (1 à 3 minutes)
+python mobilenet_complet.py entrainer                      # fine-tuning complet
+python mobilenet_complet.py evaluer                        # métriques sur Wider Face/WIDER_val
+python mobilenet_complet.py evaluer --val "D:\...\WIDER_val" --max-images 300
+python mobilenet_complet.py detecter --source 0 --flouter  # webcam
+```
+
+`evaluer` produit dans `sorties/mobilenet_complet/evaluation/` :
+- `tableau_de_bord.png` : courbe précision-rappel, précision/rappel/F1 selon le seuil, matrice de confusion,
+  VP/FP/FN selon le seuil, rappel selon la taille et selon le flou, l'occlusion et la pose ;
+- `galerie_vp_fp_fn.png`, `images/` (exemples annotés), `courbes_perte.png` ;
+- `resultats.json` et `par_seuil.csv`.
+
+Sur tout WIDER_val (3 226 images, 16 072 visages) : AP 0,780, précision 0,965, rappel 0,530 au seuil 0,5,
+meilleur F1 0,794 au seuil 0,25.
+
+Sans `--poids`, `evaluer` et `detecter` utilisent `sorties/mobilenet_complet/meilleur.pt` s'il existe,
+sinon le modèle déjà entraîné `sorties/modeles/meilleur.pt`. `--test-rapide` écrit dans un sous-dossier
+à part et ne remplace jamais un vrai modèle.
+
 ## Scripts de détection et matrice de confusion
 
 | Commande | Rôle |
