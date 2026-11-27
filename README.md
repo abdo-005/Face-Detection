@@ -58,6 +58,9 @@ python mobilenet_complet.py detecter --source 0 --flouter  # webcam
 Sur tout WIDER_val (3 226 images, 16 072 visages) : AP 0,780, précision 0,965, rappel 0,530 au seuil 0,5,
 meilleur F1 0,794 au seuil 0,25.
 
+Les métriques sont calculées sur **tout WIDER_val** (`Wider Face/WIDER_val`, chemin défini en haut du fichier
+par `WIDER_VAL`). Un essai avec `--max-images` écrit dans `evaluation_essai/` et n'écrase jamais ces résultats.
+
 Sans `--poids`, `evaluer` et `detecter` utilisent `sorties/mobilenet_complet/meilleur.pt` s'il existe,
 sinon le modèle déjà entraîné `sorties/modeles/meilleur.pt`. `--test-rapide` écrit dans un sous-dossier
 à part et ne remplace jamais un vrai modèle.

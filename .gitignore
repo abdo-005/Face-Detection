@@ -36,3 +36,4 @@ Thumbs.db
 sorties/mobilenet_complet/test_rapide/
 sorties/mobilenet_complet/detection/
 sorties/mobilenet_complet/dernier.pt
+sorties/mobilenet_complet/evaluation_essai/

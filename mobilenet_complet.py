@@ -16,8 +16,8 @@ UTILISATION (trois commandes) :
     python mobilenet_complet.py entrainer --test-rapide          # vérifie le pipeline (1 à 2 minutes)
     python mobilenet_complet.py entrainer                        # fine-tuning complet (~1 h sur GPU)
 
-    python mobilenet_complet.py evaluer --max-images 300         # métriques + figures (~1 minute)
-    python mobilenet_complet.py evaluer                          # tout WIDER_val (quelques minutes)
+    python mobilenet_complet.py evaluer                          # métriques sur TOUT WIDER_val (quelques minutes)
+    python mobilenet_complet.py evaluer --max-images 300         # essai rapide (~1 minute, dossier à part)
 
     python mobilenet_complet.py detecter                         # 20 images de WIDER_test
     python mobilenet_complet.py detecter --source 0              # webcam (q pour quitter)
@@ -50,6 +50,12 @@ from torch.utils.data import Dataset
 DOSSIER = Path(__file__).resolve().parent
 SORTIE = DOSSIER / "sorties" / "mobilenet_complet"          # tout ce que produit ce script
 POIDS_EXISTANTS = DOSSIER / "sorties" / "modeles" / "meilleur.pt"   # modèle déjà entraîné du projet
+
+# Jeu d'évaluation des métriques : WIDER_val (images annotées, jamais vues pendant l'entraînement).
+# Dans ce projet : C:\Games\Python\OpenCv\Wider Face\WIDER_val  (chemin relatif au dossier de ce fichier).
+WIDER_VAL = DOSSIER / "Wider Face" / "WIDER_val"
+WIDER_VAL_IMAGES = WIDER_VAL / "WIDER_val" / "images"                # contient 0--Parade, 1--Handshaking...
+WIDER_VAL_ANNOTATIONS = DOSSIER / "Wider Face" / "wider_face_split" / "wider_face_split" / "wider_face_val_bbx_gt.txt"
 
 
 def _premier_existant(candidats, test=lambda p: p.exists()):
@@ -436,19 +442,26 @@ def evaluer(a):
     import matplotlib
     matplotlib.use("Agg")
 
-    images = dossier_images("WIDER_val", a.val)
-    annot = Path(a.annotations) if a.annotations else fichier_annotations("wider_face_val_bbx_gt.txt")
+    # Chemins WIDER_val : constantes du haut du fichier, sinon recherche automatique (dossiers imbriqués)
+    if a.val == str(WIDER_VAL) and (WIDER_VAL_IMAGES / "0--Parade").exists():
+        images = WIDER_VAL_IMAGES                                  # chemin par défaut du projet
+    else:
+        images = dossier_images("WIDER_val", a.val)                # autre dossier donné avec --val
+    annot = Path(a.annotations) if a.annotations else (
+        WIDER_VAL_ANNOTATIONS if WIDER_VAL_ANNOTATIONS.exists() else fichier_annotations("wider_face_val_bbx_gt.txt"))
     if not (images / "0--Parade").exists():
-        raise SystemExit(f"Images WIDER_val introuvables dans : {a.val or racine_wider() / 'WIDER_val'}")
+        raise SystemExit(f"Images WIDER_val introuvables dans : {a.val}")
     if not annot.exists():
         raise SystemExit(f"Annotations introuvables : {annot} (option --annotations)")
     print(f"Images      : {images}\nAnnotations : {annot}")
     ech = [e for e in lire_annotations(annot, images) if e.chemin.exists()]
-    random.Random(42).shuffle(ech)
-    if a.max_images:
+    complet = not a.max_images or a.max_images >= len(ech)
+    random.Random(42).shuffle(ech)          # l'ordre ne change pas les métriques, mais varie les exemples montrés
+    if not complet:
         ech = ech[:a.max_images]
     det = Detecteur(a.poids or poids_par_defaut(), a.device)
-    sortie = SORTIE / "evaluation"
+    # Résultats officiels = tout WIDER_val. Un essai partiel va dans un autre dossier pour ne pas les écraser.
+    sortie = SORTIE / ("evaluation" if complet else "evaluation_essai")
     (sortie / "images").mkdir(parents=True, exist_ok=True)
     print(f"Evaluation de {det.nom} sur {len(ech)} images de WIDER_val (seuil {a.seuil}, IoU {a.iou}, "
           f"visages < {a.taille_min} px ou invalides ignores)")
@@ -794,12 +807,13 @@ def main():
     e.add_argument("--test-rapide", action="store_true", help="64 images, 1 epoque")
 
     v = sous.add_parser("evaluer", help="metriques et figures sur WIDER_val")
-    v.add_argument("--val", default=str(DOSSIER / "Wider Face" / "WIDER_val"),
+    v.add_argument("--val", default=str(WIDER_VAL),
                    help="dossier WIDER_val (images annotees, jamais vues a l'entrainement)")
     v.add_argument("--annotations", default=None, help="fichier wider_face_val_bbx_gt.txt (defaut : trouve automatiquement)")
     v.add_argument("--poids", default=None)
     v.add_argument("--device", default=None, help="cuda ou cpu (defaut : automatique)")
-    v.add_argument("--max-images", type=int, default=None)
+    v.add_argument("--max-images", type=int, default=None,
+                   help="essai rapide sur un sous-ensemble (resultats dans evaluation_essai/, pas dans evaluation/)")
     v.add_argument("--seuil", type=float, default=0.5, help="seuil de confiance pour precision / rappel")
     v.add_argument("--iou", type=float, default=0.5)
     v.add_argument("--taille-min", type=int, default=20, help="visages plus petits ignores (pixels)")
